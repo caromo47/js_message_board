@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h2>Dojo Message Bored</h2>
+<% for(var error of errors){ %>
+	<p><%= error %></p>
+<% } %>
+<form action="/messages" method="POST">
+	<p>Name: <input type="text" name="name"></p>
+	<p>Message: <input type="text" name="message"></p>
+	<input type="submit" name="">
+</form>
+<% for(var message of messages){ %>
+<fieldset>
+	<h3>Name: <%= message.name %></h3>
+	<h3>Message: <%= message.message %></h3>
+	<fieldset>
+		<h4>List of comments:</h4>
+		<% for(var comment of message.comments){ %>
+			<h5>Name: <%= comment.name %></h5>
+			<h5>Message: <%= comment.comment %></h5>
+		<% } %>
+		<h4>Add a comment: </h4>
+		<form action="/messages/<%= message._id %>/comments" method="POST">
+			<p>Name: <input type="text" name="name"></p>
+			<p>Comment: <input type="text" name="comment"></p>
+			<input type="submit" name="">
+		</form>
+	</fieldset>
+</fieldset>
+<% } %>
+</body>
+</html>
